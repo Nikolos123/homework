@@ -9,7 +9,7 @@ import UserList from './components/User.js'
 import axios from 'axios'
 
 
-const DOMAIN = 'http://127.0.0.1:8000'
+const DOMAIN = 'http://127.0.0.1:8000/api/'
 const get_url = (url) => `${DOMAIN}${url}`
 
 
@@ -26,7 +26,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(get_url('/api/users/'))
+        axios.get(get_url('users/'))
             .then(response => {
                 this.setState({users: response.data})
             }).catch(error => console.log(error))
