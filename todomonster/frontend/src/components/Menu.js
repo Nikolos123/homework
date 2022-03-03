@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    Link
+    Link,Redirect
 } from "react-router-dom";
 
 function NavbarItem({name, href}) {
@@ -35,6 +35,7 @@ export default function Navbar({navbarItems, auth, logout}) {
                 <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 {/* {(auth.is_login) ? <Link to='/login' className="btn btn-outline-success my-2 my-sm-0">Login</Link> : <button className="btn btn-outline-success my-2 my-sm-0" onClick={logout}>Logout</button>} */}
                 {login_button}
+
               </form>
             </div>
           </nav>

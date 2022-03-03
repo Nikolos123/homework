@@ -39,7 +39,6 @@ class App extends React.Component {
     }
 
     login(username, password) {
-        console.log(username, password)
         axios.post(get_url('token/'), {username: username, password: password})
             .then(response => {
                 const result = response.data
@@ -50,6 +49,10 @@ class App extends React.Component {
                 localStorage.setItem('refresh', refresh)
                 this.setState({'auth': {username: username, is_login: true}})
                 this.load_data()
+                 //    <BrowserRouter>
+                 //     <Switch>
+                 // <Redirect from='/authors1' to='/'/>
+                 //     <Switch>
             }).catch(error => {
             if (error.response.status === 401) {
                 alert('Неверный логин или пароль')
@@ -71,7 +74,6 @@ class App extends React.Component {
         let headers = {
             'Content-Type': 'application/json'
         }
-        console.log(this.state.auth)
         if (this.state.auth.is_login) {
             const token = localStorage.getItem('access')
             headers['Authorization'] = 'Bearer ' + token
@@ -81,28 +83,25 @@ class App extends React.Component {
             .then(response => {
                 //console.log(response.data)
                 this.setState({users: response.data})
-            }).catch(error => {
-            this.setState({users: []})
+            }).catch(error =>
+
             console.log(error)
-        })
+        )
 
         axios.get(get_url('projects/'), {headers})
             .then(response => {
                 //console.log(response.data)
                 this.setState({projects: response.data})
-            }).catch(error => {
-            this.setState({projects: []})
+            }).catch(error =>
             console.log(error)
-        })
+        )
 
         axios.get(get_url('todos/'), {headers})
             .then(response => {
                 //console.log(response.data)
                 this.setState({todos: response.data})
-            }).catch(error => {
-                this.setState({todos: []})
-                console.log(error)
-            }
+            }).catch(error =>
+            console.log(error)
         )
     }
 
